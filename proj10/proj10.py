@@ -27,10 +27,36 @@ def validateguess(str):
 
 
 
-maxguess = 10
+maxguess = 3
 target = input('Administrator give a number:')
 target = validate(target)
-guess = input('Player guess: ')
-guess = validateguess(guess)
+
+
+guesstime = 0
+
+while maxguess > guesstime:
+    match = 0
+    position = 0
+    guess = input('Player guess: ')
+    guess = validateguess(guess)
+    for dig in guess:
+        if dig in target:
+            match +=1
+    for x, y in zip(target, guess):
+        if x ==y:
+            position +=1
+    print('The number of correct digit is ' + str(match) +'\n' + 'The number in the correct position as ' + str(position))
+    guesstime +=1
+    if position == 5:
+        print('You guessed ' + str(guesstime) + " times to make it")
+        break
+    s = input('Do you want to quit? q for quit: ')
+    if s is 'q':
+        print("You lost. You have guessed " + str(guesstime) + " times")
+        break
+
+if guesstime == maxguess:
+    print('You lost')
+
 
 
